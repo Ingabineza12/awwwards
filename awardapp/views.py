@@ -10,7 +10,7 @@ from .forms import NewsLetterForm
 from rest_framework.response import Response
 from rest_framework.views import APIView
 # from .models import  MoringaMerch
-from .serializer import MerchSerializer,MerchSerializerProfile
+from .serializers import MerchSerializer,MerchSerializerProfile
 from rest_framework import status
 from .permissions import IsAdminOrReadOnly
 

@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tinymce',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
     'bootstrap3',
 ]
 

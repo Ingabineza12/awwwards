@@ -50,32 +50,35 @@ class Project(models.Model):
         return images
 
 class Profile(models.Model):
-    class Meta:
-        db_table='profile'
-    profile_pic=models.ImageField(upload_to='picture/',null=True,blank=True)
-    user=models.OneToOneField(User, on_delete=models.CASCADE,blank=True,related_name="profile")
-    bio=models.TextField(max_length=200,null=True,default="bio")
-    contact=models.TextField(max_length=200,null=True)
-    def save_prof(self):
-        self.save()
+        profile_pic=models.ImageField(upload_to='picture/',null=True,blank=True)
+        user=models.OneToOneField(User, on_delete=models.CASCADE,blank=True,related_name="profile")
+        bio=models.TextField(max_length=200,null=True,default="bio")
+        contact=models.TextField(max_length=200,null=True)
 
-    def delete_prof(self):
-        self.delete()
+        class Meta:
+            db_table = 'profile'
 
-    def follo(self,follower):
-        return self.following.add(follower)
 
-    def unfollo(self,unfollower):
-        return self.following.remove(unfollower)
+        def save_prof(self):
+            self.save()
 
-    def isfollowing(self,checkuser):
-        return checkuser in self.following.all()
+        def delete_prof(self):
+            self.delete()
 
-    def number_following(self):
-        if self.fowing.count():
-            returnself.following.count()
-        else:
-            return 0
+        def follo(self,follower):
+            return self.following.add(follower)
+
+        def unfollo(self,unfollower):
+            return self.following.remove(unfollower)
+
+        def isfollowing(self,checkuser):
+            return checkuser in self.following.all()
+
+        def number_following(self):
+            if self.fowing.count():
+                returnself.following.count()
+            else:
+                return 0
     # @classmethod
     # def search_by_title(cls,search_term):
     #     profiles=cls.objects.filter(title__icontains=search_term)
@@ -84,8 +87,8 @@ class Profile(models.Model):
     # def search_by_bio(cls,search_term):
     #     photo=cls.objects.filter(category__photo_category__icontains=search_term)
     #     return photo
-    def __str__(self):
-        return self.user.username
+        def __str__(self):
+            return self.user.username
 
 # class Followers(models.Model):
 #     user=models.CharField(max_length=20,default="")
