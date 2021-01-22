@@ -1,0 +1,59 @@
+{% load static %}
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Archivo+Narrow|Charmonman|Kodchasan|Dancing+Script|Spirax" rel="stylesheet">
+
+<nav class="navbar bg-light " style="color: black;">
+  <div class="container-fluid" >
+    <div class="navbar-header">
+       <div class="col-sm-6 col-md-6" id="nav" style="color: black;">
+
+        <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-bars" style="color: black;font-size:28px"></i>
+
+                  <span class="caret"></span>
+              </a>
+        <ul class="dropdown-menu" role="menu">
+          <li>
+            <a href="{%url 'new_image'%}">upload</a>
+          </li>
+          <li>
+            <a href="{% url 'profilemy' %}">My Profile</a>
+          </li>
+          <li>
+            <a href="/accounts/password/change">Change Password</a>
+          </li>
+          <li>
+            <a href="/logout">Logout</a>
+          </li>
+        </ul>
+
+    </div>
+    </div>
+    <h2 class="head" style="font-family:'Grand Hotel',cursive; color: black;font-size:30px;text-align: center;"><a href="{% url 'homePage'%}"></a>Award</h2>
+
+
+<!--
+     Adding a search form  -->
+    <div class="col-sm-4 col-md-4 navbar-right" >
+
+      <form class="navbar-form" role="search" action="{% url 'search_results' %}" >
+
+        <div class="input-group">
+          <input type="text" class="form-control mr-sm-4" placeholder="Search User" name="title">
+          <div class="input-group-btn">
+            <a href="{% url 'search_results' %}"><button class="btn btn-outline-info my-2 my-sm-0" type="submit"  style="color: black;"><i class="fa fa-search"></i></button></a>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+    <!-- search form end -->
+
+
+
+
+</div>
+</nav> 

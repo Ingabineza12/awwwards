@@ -1,0 +1,23 @@
+{% extends "registration/base.html" %}
+{% load bootstrap3 %} 
+{% load staticfiles %}
+
+  {{form.media}}
+
+{% block styles %} {{block.super}}
+  <link rel="stylesheet" href="{% static 'css/news.css' %}"> {% endblock %}
+
+  {% block content %}
+    <div class="container" style="background-color:#fff;">
+        <div class="row">
+
+  <form  action="{%url 'new_image'%}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+
+    {% bootstrap_form form%}
+    <input type="submit" class="btn btn-success btn-lg" value="Post">
+  </form>
+  {% endblock %}
+   {% block scripts %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  {% bootstrap_javascript %} {% endblock %}

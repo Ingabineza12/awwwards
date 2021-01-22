@@ -1,0 +1,48 @@
+{% extends 'registration/base.html' %}
+{% load bootstrap3 %}
+{% load static %}
+{% block content %}
+  <div class="container">
+  <div class="row">
+  <div class="col-md-4">
+  <div class="content-section">
+  <div class="media">
+  <img src="{{user.profile.profile_pic.url}}" alt="Profile" class="img_profile ">
+  <div class="media-body">
+  <div class="bodd">
+  <h3 class="account-heading ml-4">{{user.username}}</h3>
+  <button class="btn btn-outline-primary"><a href="{% url 'profile_edit' %}">Edit Profile</a></button><a href="{% url 'homePage' %}" ><i class="fa fa-sun-o" style="font-size: 28px;color: black;"></i></a>
+</div>
+
+  <p class="text-secondary ml-4">Email:{{user.email}}</p>
+  <p class="text-secondary ml-4">Bio:{{user.profile.bio}}</p>
+  <p class="text-secondary ml-4">Contact:{{user.profile.contact}}</p>
+  </div>
+</div>
+</div>
+</div>
+</div>
+  <hr>
+  <div class="row">
+    {% for user in pictures %}
+    <div class="col-md-4" style="margin-right: 5%;">
+      <img src="{{user.image.url}}" height="200" class="img-responsive">
+      <p>Project name:{{user.title}}</p>
+    </div>
+    {% endfor %}
+  </div>
+
+  <style>
+      .img_profile{
+        vertical-align: middle;
+        width: 200px;
+        height: 200px;
+        border-radius:50%;
+      }
+      .bodd,.bod{
+       display: flex;
+       justify-content: space-between;
+      }
+    </style>
+
+  {% endblock %}

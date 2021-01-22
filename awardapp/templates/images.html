@@ -1,0 +1,28 @@
+{%extends 'all-news/base.html'%}
+
+ {% block content %}
+
+ <div class="container">
+
+   <div class="row">
+     <img src="{{image.image.url}}"  class="img-responsive" alt="">
+   </div>
+
+   <div class="row">
+     <h1 class="text-center">{{image.description}}</h1>
+   </div>
+
+   <div class="row">
+     {% autoescape on %}
+     <!-- {{article.post| safe}} -->
+    {% endautoescape %}
+
+   </div>
+
+   <div class="row">
+
+   </div>
+
+ </div>
+
+ {% endblock %}

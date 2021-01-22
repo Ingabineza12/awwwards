@@ -1,0 +1,209 @@
+{% extends 'all_news/base.html' %}
+{% load bootstrap3 %}
+{% load static %}
+{% block content %}
+
+<link href="https://fonts.googleapis.com/css?family=Charmonman|Dancing+Script|Kodchasan|Spirax|Abril+Fatface" rel="stylesheet">
+<header>
+  <div class="header">
+    <img src="static/image/images (9).jpeg" id="im">
+    <div class="text">
+      <p  style="font-family: cursive; text-align: center;">Site of the day on October 24,2019 </p>
+
+    </div>
+    <h1 id="aw">Award Application</h1>
+    <div class="bt">
+        <button class="btn btn-success" style="border-radius:25px;"><a href="{% url 'homePage' %}">visite site</a></button>
+        <button class="btn btn-outline-primary" style="border-radius:25px;">collect</button>
+    </div>
+
+
+
+  </div>
+</header>
+<br>
+<p style="font-family: sans-serif;"><strong>Sites of the day</strong> Previous Winners</p>
+<br>
+
+  <div class="container">
+<divc class="row">
+  {% for image in pictures %}
+  <div class="col-md-6" width="400 px">
+
+  <div class="card wrapper" >
+    <div class="parent" onclick="">
+      <div class="child bg-one">
+          <a href="{% url 'projects' image.id %}" ><img src="{{image.image.url}}" height="300" alt="pict" class="image card-img-top" ></a>
+  <div class="mask flex-center rgba-black-strong">
+    <!-- <a href="{% url 'projects' image.id %}" class="btn btn-outline-success" id="btv" style="border-radius:15px;">More</a> -->
+  </div>
+</div>
+</div>
+</div>
+  <div class="card-body">
+      <div>
+          <p style="font-family: sans-serif;">
+              Title: {{image.title}}</p>
+        <!-- <a  class="btn" href="{% url 'like' id=image.id%}" >
+            <p >{{image.likes}} Likes <i class="fa fa-heart-o" ></i></p>
+
+        </a> -->
+        <p>{{image.pub_date|date:"F d,Y"}}</p>
+        </div>
+
+
+
+  {% for com in image.comment_set.all %}
+  <p>{{com.comment}}</p>
+  {% endfor %}
+  <p><a href="{% url 'comment' image.id %}"><i class=""" style="color: black;"></i></a>add comment...</p>
+
+</div>
+</div>
+  {% endfor %}
+</div>
+</div>
+
+  <div class="jumbotron text-center mt-0" style="background-color:white;width: 30%; text-align: center; margin-left: 25%;">
+    <form action="{% url 'homePage' %}" method="post" id="fora">
+      {%csrf_token%}
+      {% bootstrap_form letterForm %}
+      <input type="submit" class="btn btn-info" value="Subscribe here">
+
+    </form>
+
+  </div>
+  <footer style="background-color: grey;">
+  <div class="container" >
+
+
+
+
+
+  <p style="font-size:18px;text-align: center; color: white;margin-left: 20%;"><strong>Dukunde Marie Jeanne 2019</strong></p>
+
+
+
+</div>
+</footer>
+  <style>
+    .parent{
+      overflow: hidden;
+      position:relative;
+      display:inline-block;
+      cursor: pointer;
+    }
+    .child{
+      background-size: cover;
+      background-repeat: no-repeat;
+      -webkit-transition: all .5s;
+      -moz-transition: all .5s;
+      -o-transition: all .5s;
+      transition: all .5s;
+    }
+    .parent:hover .child, .parent:focus .child{
+      -ms-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -webkit-transform: scale(1.2);
+      -o-transform: scale(1.2);
+      transform: scale(1.2);
+
+    }
+    .parent:hover .child:before, .parent:focus .child::before{
+      display:block;
+    }
+    .parent:hover a , .parent:focus a{
+      display:block;
+    }
+    .child::before{
+      content:"";
+      display: none;
+      position: absolute;
+      top:0;
+      left: 0;
+      background-color: black;
+      opacity: 0.6;
+    }
+    @media screen and(max-width: 960px){
+      .parent{width: 100%;margin:20px 0px}
+      .wrapper{padding: 20px 20px;}
+    }
+    #aw{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform: translate(-50%,-50%);
+      color:white;
+      font-size:50px;
+      font-family:'Grand Hotel',cursive ;
+    }
+    .image:hover{
+        box-shadow: 0 1px 328px rgba(0, 0, 0, 0.25),0 1px 2px rgba(0, 0, 0, 0.22);
+        /* transition:  .5s ease ; */
+        opacity: 0.7;
+
+        overflow: hidden;
+        transform:translate(-3px);
+
+    }
+    .container{
+      display: flex;
+      justify-content: space-between;
+    }
+    .header{
+      position: relative;
+    }
+    /* #btv{
+      position:absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        color:white;
+        font-size:13px;
+        font-family:sans-serif ;
+    } */
+    #btv{
+      display: none;
+      font-size:35px;
+      color:ffffff !important;
+      font-family: sans-serif;
+      text-align: center;
+      margin: auto;
+      position: absolute;
+      top:0;
+      left:0;
+      bottom:0;
+      right: 0;
+      height: 50px;
+      cursor: pointer;
+    }
+    .text{
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: white;
+      /* padding-left:0px ; */
+      /* padding-right:0px ; */
+    }
+    .bt{
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+    }
+    #im{
+      width: 100%;
+      height: auto;
+      opacity:0.9;
+    }
+    .img_profile{
+
+      width: 50px;
+      height: 50px;
+      border-radius:50%;
+    }
+  </style>
+
+{% endblock %}
+{% block scripts %} {{block.super}}
+  <script type="text/javascript" src="{%static 'js/newsletter.js'%}"></script>
+{% endblock %}
