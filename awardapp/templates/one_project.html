@@ -4,15 +4,17 @@
 {% block content %}
 
 <link href="https://fonts.googleapis.com/css?family=Charmonman|Dancing+Script|Kodchasan|Spirax|Abril+Fatface" rel="stylesheet">
+
 <header>
         <div class="header" >
 
             {% for images in projects %}
+
             <img src="{{images.image.url}}" width="100%" height="450vh">
-            <p class="title">{{images.title}}</p>
+
 
             <div class="bt">
-            <button class="btn btn-outline-success" style="border-radius:25px;"><a href="{{images.link}}" style="color: white;">visite site</a></button>
+            <button class="btn btn-success" style="border-radius:25px;";><a href="{{images.link}}" style="color:white;">visite site</a></button>
 
 
         </div>
@@ -22,7 +24,9 @@
 </header>
 <br>
 <body>
+
     <div class="row">
+      
 
         <div class="col-md-3" >
                 <h3>Content </h3><hr class="bg-default"><br><h4>{{content}}.0</h4>
