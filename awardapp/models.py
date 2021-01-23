@@ -53,8 +53,6 @@ class Profile(models.Model):
         profile_pic=models.ImageField(upload_to='picture/',null=True,blank=True)
         user=models.OneToOneField(User, on_delete=models.CASCADE,blank=True,related_name="profile")
         bio=models.TextField(max_length=200,null=True,default="bio")
-        contact=models.TextField(max_length=200,null=True)
-
         class Meta:
             db_table = 'profile'
 
@@ -79,14 +77,7 @@ class Profile(models.Model):
                 returnself.following.count()
             else:
                 return 0
-    # @classmethod
-    # def search_by_title(cls,search_term):
-    #     profiles=cls.objects.filter(title__icontains=search_term)
-    #     return profiles
-    # @classmethod
-    # def search_by_bio(cls,search_term):
-    #     photo=cls.objects.filter(category__photo_category__icontains=search_term)
-    #     return photo
+
         def __str__(self):
             return self.user.username
 
@@ -109,9 +100,9 @@ class Comment(models.Model):
     def __str__(self):
         return self.posted_by
 
-class NewsLetterRecients(models.Model):
-    name=models.CharField(max_length=30)
-    email=models.EmailField()
+# class NewsLetterRecients(models.Model):
+#     name=models.CharField(max_length=30)
+#     email=models.EmailField()
 
 class Rates(models.Model):
     design=models.PositiveIntegerField(default=0,validators=[MaxValueValidator(10)])
