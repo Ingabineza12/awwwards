@@ -3,37 +3,27 @@
 {% load static %}
 {% block content %}
 
-<link href="https://fonts.googleapis.com/css?family=Charmonman|Dancing+Script|Kodchasan|Spirax|Abril+Fatface" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
 <header>
   <div class="header">
-    <img src="static/image/images (9).jpeg" id="im">
-    <div class="text">
-      <p  style="font-family: cursive; text-align: center;">Site of the day on October 24,2019 </p>
-
-    </div>
-    <h1 id="aw">Award Application</h1>
-    <div class="bt">
-        <button class="btn btn-success" style="border-radius:25px;"><a href="{% url 'homePage' %}">visite site</a></button>
-        <button class="btn btn-outline-primary" style="border-radius:25px;">collect</button>
-    </div>
-
+    <img src="https://images.idgesg.net/images/article/2019/02/certification_school_pencils_diversity_creative_team_by-evgeny555-getty-100787956-large.jpg" id="im">
 
 
   </div>
 </header>
-<br>
-<p style="font-family: sans-serif;"><strong>Sites of the day</strong> Previous Winners</p>
-<br>
+
+<br><br>
 
   <div class="container">
 <divc class="row">
   {% for image in pictures %}
-  <div class="col-md-6" width="400 px">
+  <div class="col-md-4" width="400 px">
 
   <div class="card wrapper" >
     <div class="parent" onclick="">
       <div class="child bg-one">
-          <a href="{% url 'projects' image.id %}" ><img src="{{image.image.url}}" height="300" alt="pict" class="image card-img-top" ></a>
+          <a href="{% url 'projects' image.id %}" ><img src="{{image.image.url}}" height="250" alt="pict" class="image card-img-top" ></a>
   <div class="mask flex-center rgba-black-strong">
     <!-- <a href="{% url 'projects' image.id %}" class="btn btn-outline-success" id="btv" style="border-radius:15px;">More</a> -->
   </div>
@@ -48,38 +38,19 @@
             <p >{{image.likes}} Likes <i class="fa fa-heart-o" ></i></p>
 
         </a> -->
-        <p>{{image.pub_date|date:"F d,Y"}}</p>
+        <p>Added on: {{image.pub_date|date:"F d,Y"}}</p>
+
         </div>
 
-
-
-  {% for com in image.comment_set.all %}
-  <p>{{com.comment}}</p>
-  {% endfor %}
-  <p><a href="{% url 'comment' image.id %}"><i class=""" style="color: black;"></i>add comment...</a></p>
-
 </div>
 </div>
   {% endfor %}
 </div>
-</div>
+<br><br><br><br>
 
-  <div class="jumbotron text-center mt-0" style="background-color:white;width: 30%; text-align: center; margin-left: 25%;">
-    <form action="{% url 'homePage' %}" method="post" id="fora">
-      {%csrf_token%}
-      {% bootstrap_form letterForm %}
-      <input type="submit" class="btn btn-info" value="Subscribe here">
 
-    </form>
-
-  </div>
   <footer style="background-color: black;">
   <div class="container" >
-
-
-
-
-
   <p style="font-size:18px;text-align: center; color: white;"><strong> &#169;Deborah I. M   2021</strong></p>
 
 
@@ -138,7 +109,7 @@
       font-family:'Grand Hotel',cursive ;
     }
     .image:hover{
-        box-shadow: 0 1px 328px rgba(0, 0, 0, 0.25),0 1px 2px rgba(0, 0, 0, 0.22);
+        box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1),0 1px 2px rgba(0, 0, 0, 0.2);
         /* transition:  .5s ease ; */
         opacity: 0.7;
 
@@ -148,7 +119,7 @@
     }
     .container{
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
     }
     .header{
       position: relative;
@@ -192,8 +163,7 @@
     }
     #im{
       width: 100%;
-      height: auto;
-      opacity:0.9;
+      height: 500px;
     }
     .img_profile{
 
@@ -204,6 +174,6 @@
   </style>
 
 {% endblock %}
-{% block scripts %} {{block.super}}
+<!-- {% block scripts %} {{block.super}}
   <script type="text/javascript" src="{%static 'js/newsletter.js'%}"></script>
-{% endblock %}
+{% endblock %} -->
