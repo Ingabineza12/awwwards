@@ -5,15 +5,19 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow|Charmonman|Kodchasan|Dancing+Script|Spirax" rel="stylesheet">
 
-<nav class="navbar bg-light " style="color: black;">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
+
+<nav class="navbar bg-light " >
   <div class="container-fluid" >
-    <div class="navbar-header">
+    <!-- <div class="navbar-header">
        <div class="col-sm-6 col-md-6" id="nav" style="color: black;">
 
-        <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-bars" style="color: black;font-size:28px"></i>
+        <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false" style="margin-top:8px;"><i class="fa fa-bars" style="color: black;font-size:18px; "> Menu</i>
 
                   <span class="caret"></span>
               </a>
+
         <ul class="dropdown-menu" role="menu">
           <li>
             <a href="{%url 'new_image'%}">upload</a>
@@ -30,30 +34,118 @@
         </ul>
 
     </div>
-    </div>
-    <h2 class="head" style="font-family:'Grand Hotel',cursive; color: black;font-size:30px;text-align: center;"><a href="{% url 'homePage'%}"></a>Award</h2>
+    </div> -->
+<span class="navbar-left" style="font-size:20px;font-weight: bolder;cursor:pointer; margin-top:10px;" onclick="openNav()">&#9776;  Menu </span>
 
+  <div id="mySidenav" class="sidenav" >
+{% if user.is_authenticated %}
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <h3 style="text-align:center; color: white;"> <strong>Menu </strong></h3> <br><br>
+  <a href="{%url 'homePage'%}">Home</a>
+  <a href="{%url 'profilemy'%}"> Profile</a>
+  <a href="{%url 'new_image'%}">Add site</a>
+  <a href="{%url 'profile_list'%}">Api Profile</a>
+  <a href="{%url 'project_list'%}">Api Project</a>
+  <a href="/accounts/password/change">Change Password</a>
+  <a href="/logout">Logout</a>
 
-<!--
-     Adding a search form  -->
-    <div class="col-sm-4 col-md-4 navbar-right" >
+  {% else %}
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> <br><br>
+  <li> <a class='btn btn-default' href="/accounts/login" style="color:black;">Login</a> </li>
+  <li> <a class='btn btn-default' href="/accounts/register" style="color:black;">Register</a> </li>
 
-      <form class="navbar-form" role="search" action="{% url 'search_results' %}" >
+  {% endif %}
 
-        <div class="input-group">
-          <input type="text" class="form-control mr-sm-4" placeholder="Search User" name="title">
-          <div class="input-group-btn">
-            <a href="{% url 'search_results' %}"><button class="btn btn-outline-info my-2 my-sm-0" type="submit"  style="color: black;"><i class="fa fa-search"></i></button></a>
-          </div>
+</div>
+
+    <!--
+         Adding a search form  -->
+        <div class="col-sm-4 col-md-4" >
+
+          <form class="navbar-form" role="search" action="{% url 'search_results' %}" style="margin-left: 70px;">
+
+            <div class="input-group">
+              <input type="text" class="form-control " placeholder="Search project" name="title">
+              <div class="input-group-btn">
+                <a href="{% url 'search_results' %}"><button class="btn btn-outline-info my-2 my-sm-0" type="submit"  style="color: black;"><i class="fa fa-search"></i></button></a>
+              </div>
+            </div>
+
+          </form>
         </div>
-
-      </form>
-
-    </div>
-    <!-- search form end -->
+        <!-- search form end -->
 
 
+    <button class="button button-large navbar-right" style="position: relative;
+            display: inline-block;
+            height: 60px;
+            padding: 0 35px;
+            background-color: #49c5b6;
+            line-height: 63px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            overflow: hidden;"><a href="{%url 'new_image'%}" style="color:white;">SUBMIT YOUR SITE!</a></button>
+
+<a href="{% url 'homePage' %}" > <h1 style="font-size:35px;margin-top:2px; font-family: 'Nerko One', cursive; color: Teal;">Awwwardz.</h1></a>
 
 
 </div>
-</nav> 
+</nav>
+
+<style>
+  a:link {
+    text-decoration: none;
+  }
+
+  .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 5;
+  left: 0;
+  background-color: darkslategray;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #f5f4f8;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #7f87b4;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 35px;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
