@@ -1,4 +1,0 @@
-
-Hello {{name}}
-
-Welcome to the Awwward app newsletter You will find the most exciting news about this Awwward application
