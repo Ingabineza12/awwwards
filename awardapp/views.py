@@ -5,12 +5,11 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from .forms import NewProjectForm,UpdatebioForm,CommentForm,VotesForm
-from .email import send_welcome_email
 from .forms import NewsLetterForm
 from rest_framework.response import Response
 from rest_framework.views import APIView
 # from .models import  MoringaMerch
-from .serializers import MerchSerializer,MerchSerializerProfile
+from .serializers import ProjectSerializer,ProfileSerializer
 from rest_framework import status
 from .permissions import IsAdminOrReadOnly
 
@@ -60,7 +59,6 @@ def profilemy(request,username=None):
     if not username:
         username=request.user.username
         images=Project.objects.filter(title=username)
-        # proc_img=Profile.objects.filter(user=current_user).first()
     return render(request,'profilemy.html',locals(),{"pictures":pictures})
 
 @login_required(login_url='/accounts/login/')
@@ -169,21 +167,16 @@ def projects(request,id):
 #     data = {'success': 'You have been successfully added to mailing list'}
 #     return JsonResponse(data)
 
-class MerchList(APIView):
-    def get(self, request, format=None):
-        all_merch = Project.objects.all()
-        serializers = MerchSerializer(all_merch, many=True)
-        return Response(serializers.data)
-    def post(self, request, format=None):
-        serializers = MerchSerializer(data=request.data)
-        if serializers.is_valid():
-            serializers.save()
-            return Response(serializers.data, status=status.HTTP_201_CREATED)
-        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+class ProfileList(APIView):
     permission_classes = (IsAdminOrReadOnly,)
-class MerchListProfile(APIView):
     def get(self, request, format=None):
-        all_merch = Profile.objects.all()
-        serializers = MerchSerializerProfile(all_merch, many=True)
+        all_users = Profile.objects.all()
+        serializers = ProfileSerializer(all_users, many=True)
         return Response(serializers.data)
+
+class ProjectList(APIView):
     permission_classes = (IsAdminOrReadOnly,)
+    def get(self, request, format=None):
+        all_projects = Project.objects.all()
+        serializers = ProjectSerializer(all_projects, many=True)
+        return Response(serializers.data)
