@@ -15,41 +15,44 @@
 
 <br><br>
 
-  <div class="container">
-<divc class="row">
-  {% for image in pictures %}
-  <div class="col-md-4" width="400 px">
 
-  <div class="card wrapper" >
-    <div class="parent" onclick="">
-      <div class="child bg-one">
-          <a href="{% url 'projects' image.id %}" ><img src="{{image.image.url}}" height="250" alt="pict" class="image card-img-top" ></a>
-  <div class="mask flex-center rgba-black-strong">
-    <!-- <a href="{% url 'projects' image.id %}" class="btn btn-outline-success" id="btv" style="border-radius:15px;">More</a> -->
-  </div>
-</div>
-</div>
-</div>
-  <div class="card-body">
-      <div>
-          <p style="font-family: sans-serif;">
-              Title: {{image.title}}</p>
-        <!-- <a  class="btn" href="{% url 'like' id=image.id%}" >
-            <p >{{image.likes}} Likes <i class="fa fa-heart-o" ></i></p>
+    <div class="container" style="padding-top: 40px;">
 
-        </a> -->
-        <p>Added on: {{image.pub_date|date:"F d,Y"}}</p>
+        <div class="row">
+            {% for image in pictures %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-s">
+                    <a href="{% url 'projects' image.id %}">
+                        <img src="{{image.image.url}}" width="100%">
+                    </a>
 
+
+                    <div class="card-body">
+
+                        <p> <span
+                            style="font-weight: bold; font-size: 15px;color: rgba(0, 0, 0, 0.658);font-family: 'Times New Roman', Times, serif;margin-top: -0.3cm;">
+                            {{image.title}}</span> <br><br
+                        </p>
+                        <hr style="width: 345px;margin-left: -0.50cm;margin-top: -0.30cm;">
+                        <div class="foot" style="margin-top: -0.30cm;">
+                            <span><a href="{% url 'projects' image.id %}"><small>See more</small></a></span>
+                            <span style="float:right;color: rgba(0, 0, 0, 0.534);"> <small> Added on:{{ image.pub_date|date:"F d,Y"}}</small> </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
+    </div>
 
-</div>
-</div>
-  {% endfor %}
-</div>
-<br><br><br><br>
+<br><br><br><br><br><br>
 
 
-  <footer style="background-color: black;">
+
+
+
+
+  <footer style="background-color: gray;">
   <div class="container" >
   <p style="font-size:18px;text-align: center; color: white;"><strong> &#169;Deborah I. M   2021</strong></p>
 
@@ -117,37 +120,11 @@
         transform:translate(-3px);
 
     }
-    .container{
-      display: flex;
-      justify-content: space-around;
-    }
+
     .header{
       position: relative;
     }
-    /* #btv{
-      position:absolute;
-        top:50%;
-        left:50%;
-        transform: translate(-50%,-50%);
-        color:white;
-        font-size:13px;
-        font-family:sans-serif ;
-    } */
-    #btv{
-      display: none;
-      font-size:35px;
-      color:ffffff !important;
-      font-family: sans-serif;
-      text-align: center;
-      margin: auto;
-      position: absolute;
-      top:0;
-      left:0;
-      bottom:0;
-      right: 0;
-      height: 50px;
-      cursor: pointer;
-    }
+
     .text{
       position: absolute;
       top: 20px;
