@@ -5,7 +5,7 @@ from django.test import TestCase
 from .models import Project,User,Profile,Comment
 import datetime as dt
 
-class ImageTestClass(TestCase):
+class ProjectTestClass(TestCase):
     '''
     images test method
     '''
